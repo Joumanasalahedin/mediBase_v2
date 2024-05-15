@@ -29,7 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["id"] = $id;
                         $_SESSION["username"] = $username;
 
-                        header("Location: index.php");
+                        // Set a custom session cookie
+                        setcookie("customSessionUser", $username, 0, "/");
+
+                        header("Location: index.php?login=success");
                         exit();
                     } else {
                         $login_err = "Invalid username or password.";
@@ -91,7 +94,7 @@ mysqli_close($conn);
 
 
         <!-- Sign In Start -->
-        <div class="container-fluid">
+        <div class="container-fluid">˚
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
@@ -110,12 +113,15 @@ mysqli_close($conn);
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
                                 <label for="floatingPassword">Password</label>
                             </div>
+                            <div class="mb-4">
+                                <input type="checkbox" id="toggle-password">
+                                <label for="toggle-password">Show Password</label>
+                            </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Keep me signed in</label>
                                 </div>
-                                <a href="">Forgot Password</a>
                             </div>
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
                             <p class="text-center mb-0">Don't have an Account? <a href="signup.php">Sign Up</a></p>
@@ -138,7 +144,7 @@ mysqli_close($conn);
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
+    <!-- Main Javascript -->
     <script src="js/main.js"></script>
 </body>
 

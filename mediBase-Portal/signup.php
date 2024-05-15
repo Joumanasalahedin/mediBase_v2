@@ -6,11 +6,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
     $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    $department = filter_input(INPUT_POST, "speciality", FILTER_SANITIZE_SPECIAL_CHARS);
+    $birth_date = $_POST['birth_date'];
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO doctors (name, email, username, password)
-        VALUES ('$name', '$email', '$username', '$hash');";
+    $sql = "INSERT INTO doctors (name, birth_date, email, department, username, password)
+        VALUES ('$name', '$birth_date', '$email', '$department', '$username', '$hash');";
 
     if (mysqli_query($conn, $sql)) {
         header("Location: signin.php");
@@ -88,20 +90,47 @@ mysqli_close($conn);
                                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
                                 <label for="floatingInput">Email address</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="speciality" name="speciality">
+                                    <option value="" disabled selected>Speciality</option>
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Orthopedics">Orthopedics</option>
+                                    <option value="Dermatology">Dermatology</option>
+                                    <option value="Obstetrics and Gynecology (OB/GYN)">Obstetrics & Gynecology</option>
+                                    <option value="Psychiatry">Psychiatry</option>
+                                    <option value="Neurology">Neurology</option>
+                                    <option value="Emergency">Emergency</option>
+                                </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="floatingText" name="birth_date" required>
+                                <label for="floatingText">Birthdate</label>
+                            </div>
                             <div class="form-floating mb-4">
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
                                 <label for="floatingPassword">Password</label>
                             </div>
+                            <div class="mb-4">
+                                <input type="checkbox" id="toggle-password">
+                                <label for="toggle-password">Show Password</label>
+                            </div>
+                            <div id="password-requirements" class="mb-4">
+                                <p id="min-length" class="requirement">Minimum 8 characters</p>
+                                <p id="lowercase" class="requirement">Contains lowercase letter</p>
+                                <p id="uppercase" class="requirement">Contains uppercase letter</p>
+                                <p id="number" class="requirement">Contains number</p>
+                                <p id="special-char" class="requirement">Contains special character</p>
+                                <hr>
+                            </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                                     <label class="form-check-label" for="exampleCheck1">I accept the <a href="#">terms and conditions</a></label>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-4">
-                                <a href="">Forgot Password</a>
                             </div>
-                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
+                            <button type="submit" id="signupButton" class="btn btn-primary py-3 w-100 mb-4">Sign Up</button>
                             <p class="text-center mb-0">Already have an Account? <a href="signin.php">Sign In</a></p>
                         </form>
                     </div>
@@ -122,7 +151,7 @@ mysqli_close($conn);
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
+    <!-- Main Javascript -->
     <script src="js/main.js"></script>
 </body>
 

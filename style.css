@@ -1,14 +1,5 @@
-/* Variables */
-/* mixin */
-/* ----------------------------------------------------------
-:: Template Name: Medilife - Medical & Health Template
-:: Author: Colorlib
-:: Author URL: https://colorlib.com
-:: Version: 1.0.0
-:: Created: 04 March 2018
-:: Last Updated: 04 March 2018
----------------------------------------------------------- */
 /* [ -- Master Stylesheet -- ] */
+
 /* ------------- Index of Stylesheet -------------
 :: 1.0 Import Fonts
 :: 2.0 Import All CSS
@@ -31,6 +22,7 @@
 :: 19.0 Blog Area CSS
 :: 20.0 Contact Area CSS
 :: 21.0 Shortcode Area CSS
+:: 22.0 Cookies Consent Popup CSS
 ------------------------------------------------ */
 /* :: 1.0 Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900");
@@ -1644,3 +1636,39 @@ textarea {
       color: #ffffff; }
 
 /*# sourceMappingURL=style.css.map */
+
+/* :: 21.0 Cookies Consent Popup CSS */
+.cookie-consent-popup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: none; /* Hidden by default */
+  z-index: 1000;
+}
+
+.cookie-consent-content p {
+  margin: 0;
+  padding-right: 20px;
+}
+
+.cookie-btn {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#acceptCookies {
+  background-color: #4caf50;
+  color: white;
+}
+
+#declineCookies {
+  background-color: #f44336;
+  color: white;
+}
