@@ -34,7 +34,7 @@ With MediBase placed in the `htdocs` directory, you're ready to launch the appli
 
 1. Start the XAMPP Control Panel and run the Apache server.
 2. Open your preferred web browser.
-3. Access MediBase by navigating to `http://localhost/mediBase/index.html`.
+3. Access MediBase by navigating to `http://localhost/mediBase_v2/index.html`.
 
 ## Dummy User Login
 To explore MediBase with a pre-configured user account, use the following credentials:
@@ -46,4 +46,4 @@ This dummy account already has patient information for demonstration purposes.
 
 ## Support
 
-For any assistance or feedback regarding the MediBase system, please contact [jouhanzasom@gmail.com].
+For any assistance or feedback regarding the MediBase system, please contact [joumanasalahedin@gmail.com].
